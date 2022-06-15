@@ -15,9 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const models_1 = __importDefault(require("../models"));
 const read = () => __awaiter(void 0, void 0, void 0, function* () {
     const task = yield models_1.default.read();
-    console.log('service');
+    return task;
+});
+const create = (tarefa) => __awaiter(void 0, void 0, void 0, function* () {
+    const task = yield models_1.default.create(tarefa);
     return task;
 });
 exports.default = {
     read,
+    create,
 };

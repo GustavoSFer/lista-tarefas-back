@@ -1,12 +1,19 @@
 import taskModel from '../models';
+import { ITask, ITaskBody } from '../interfaces';
 
-const read = async () => {
+const read = async (): Promise<ITask[]> => {
   const task = await taskModel.read();
-  console.log('service');
 
   return task;
 };
 
+const create = async (tarefa: ITaskBody) => {
+  const task = await taskModel.create(tarefa);
+
+  return task;
+}
+
 export default {
   read,
+  create,
 }

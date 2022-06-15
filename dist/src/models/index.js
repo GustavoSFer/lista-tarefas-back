@@ -15,9 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const connectionDb_1 = __importDefault(require("./connectionDb"));
 const read = () => __awaiter(void 0, void 0, void 0, function* () {
     const task = yield connectionDb_1.default.find();
-    console.log('model');
     return task;
+});
+const create = (tarefa) => __awaiter(void 0, void 0, void 0, function* () {
+    const task = yield connectionDb_1.default.create(tarefa);
+    console.log(task);
+    return {
+        _id: task._id,
+        task: tarefa.task,
+        status: tarefa.status,
+    };
 });
 exports.default = {
     read,
+    create,
 };

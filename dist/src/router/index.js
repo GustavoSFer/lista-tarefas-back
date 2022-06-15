@@ -7,4 +7,5 @@ const express_1 = require("express");
 const controller_1 = __importDefault(require("../controller"));
 const route = (0, express_1.Router)();
 route.get('/', controller_1.default.read);
+route.post('/', controller_1.default.create);
 exports.default = route;

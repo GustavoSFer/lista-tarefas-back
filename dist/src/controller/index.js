@@ -18,6 +18,13 @@ const read = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log('controller');
     return res.status(200).json(task);
 });
+const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { task, status } = req.body;
+    const result = yield service_1.default.create({ task, status });
+    console.log('controller');
+    return res.status(201).json(result);
+});
 exports.default = {
     read,
+    create,
 };

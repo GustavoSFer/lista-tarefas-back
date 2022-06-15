@@ -6,8 +6,17 @@ const read = async (req: Request, res: Response) => {
   console.log('controller');
 
   return res.status(200).json(task);
+};
+
+const create = async (req: Request, res: Response) => {
+  const { task, status } = req.body;
+  const result = await taskService.create({ task, status });
+  console.log('controller');
+
+  return res.status(201).json(result);
 }
 
 export default {
   read,
+  create,
 }
