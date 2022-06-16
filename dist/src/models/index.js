@@ -46,7 +46,6 @@ const findOne = (id) => __awaiter(void 0, void 0, void 0, function* () {
 const remove = (id) => __awaiter(void 0, void 0, void 0, function* () {
     // const verifyId = findOne(id);
     // if (!verifyId) return undefined;
-    console.log('id model', id);
     yield connectionDb_1.default.deleteOne({ _id: id });
     return {
         _id: id,
