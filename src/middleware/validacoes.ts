@@ -15,7 +15,7 @@ const validationTask = (req: Request, _res: Response, next: NextFunction) => {
 };
 
 const validationUpdate = (req: Request, _res: Response, next: NextFunction) => {
-  const { id, task, status } = req.body;
+  const { id } = req.body;
   if (!id) return next({ error: 404, message: 'Id não informado!' });
 
   return next();

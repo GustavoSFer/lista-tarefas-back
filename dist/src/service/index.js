@@ -27,8 +27,15 @@ const update = (id, task, status) => __awaiter(void 0, void 0, void 0, function*
         return undefined;
     return updteTask;
 });
+const remove = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const delTask = yield models_1.default.remove(id);
+    if (!delTask)
+        return undefined;
+    return delTask;
+});
 exports.default = {
     read,
     create,
     update,
+    remove,
 };

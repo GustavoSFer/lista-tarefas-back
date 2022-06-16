@@ -19,7 +19,6 @@ const read = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 const create = (tarefa) => __awaiter(void 0, void 0, void 0, function* () {
     const task = yield connectionDb_1.default.create(tarefa);
-    console.log(task);
     return {
         _id: task._id,
         task: tarefa.task,
@@ -30,7 +29,7 @@ const update = (id, task, status) => __awaiter(void 0, void 0, void 0, function*
     const verifyId = findOne(id);
     if (!verifyId)
         return undefined;
-    const updateTask = yield connectionDb_1.default.updateOne({ _id: id, task, status });
+    yield connectionDb_1.default.updateOne({ _id: id, task, status });
     return {
         _id: id,
         task,
@@ -38,14 +37,26 @@ const update = (id, task, status) => __awaiter(void 0, void 0, void 0, function*
     };
 });
 const findOne = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const find = yield connectionDb_1.default.findById({ _id: id });
+    const find = yield connectionDb_1.default.findOne({ _id: id });
     console.log('>>>>>>>', find);
     if (!find)
         return undefined;
     return find;
 });
+const remove = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    // const verifyId = findOne(id);
+    // if (!verifyId) return undefined;
+    console.log('id model', id);
+    yield connectionDb_1.default.deleteOne({ _id: id });
+    return {
+        _id: id,
+        task: 'removido',
+        status: 'já era',
+    };
+});
 exports.default = {
     read,
     create,
     update,
+    remove,
 };

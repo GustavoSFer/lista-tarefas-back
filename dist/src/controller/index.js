@@ -29,8 +29,17 @@ const update = (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
         return next({ error: 404, message: 'Task não existe!' });
     return res.status(200).json(resultUpdate);
 });
+const remove = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    console.log(id);
+    const delTask = yield service_1.default.remove(id);
+    if (!delTask)
+        return next({ error: 404, message: 'Task não existe!' });
+    return res.status(200).json(delTask);
+});
 exports.default = {
     read,
     create,
     update,
+    remove,
 };
