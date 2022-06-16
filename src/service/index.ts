@@ -7,7 +7,7 @@ const read = async (): Promise<ITask[]> => {
   return task;
 };
 
-const create = async (tarefa: ITaskBody) => {
+const create = async (tarefa: ITaskBody): Promise<ITask> => {
   const task = await taskModel.create(tarefa);
 
   return task;

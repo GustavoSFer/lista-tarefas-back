@@ -3,7 +3,6 @@ import taskService from '../service';
 
 const read = async (req: Request, res: Response) => {
   const task = await taskService.read();
-  console.log('controller');
 
   return res.status(200).json(task);
 };
@@ -11,7 +10,6 @@ const read = async (req: Request, res: Response) => {
 const create = async (req: Request, res: Response) => {
   const { task, status } = req.body;
   const result = await taskService.create({ task, status });
-  console.log('controller');
 
   return res.status(201).json(result);
 }
