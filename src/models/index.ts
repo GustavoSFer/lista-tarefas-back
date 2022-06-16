@@ -18,7 +18,9 @@ const create = async (tarefa: ITaskBody): Promise<ITask> => {
   }
 };
 
-const update = async (id: number, task: string, status: string): Promise<ITask> => {
+const update = async (id: number, task: string, status: string): Promise<ITask | undefined> => {
+  const verifyId = findOne(id);
+  if (!verifyId) return undefined;
   const updateTask = await model.updateOne({ _id: id, task, status });
 
   return {
@@ -26,6 +28,14 @@ const update = async (id: number, task: string, status: string): Promise<ITask> 
     task,
     status,
   }
+};
+
+const findOne =  async (id: number): Promise<ITask | undefined> => {
+  const find = await model.findById({ _id: id });
+  console.log('>>>>>>>', find)
+  if (!find) return undefined;
+
+  return find;
 }
 
 export default {

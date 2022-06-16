@@ -27,12 +27,22 @@ const create = (tarefa) => __awaiter(void 0, void 0, void 0, function* () {
     };
 });
 const update = (id, task, status) => __awaiter(void 0, void 0, void 0, function* () {
+    const verifyId = findOne(id);
+    if (!verifyId)
+        return undefined;
     const updateTask = yield connectionDb_1.default.updateOne({ _id: id, task, status });
     return {
         _id: id,
         task,
         status,
     };
+});
+const findOne = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const find = yield connectionDb_1.default.findById({ _id: id });
+    console.log('>>>>>>>', find);
+    if (!find)
+        return undefined;
+    return find;
 });
 exports.default = {
     read,

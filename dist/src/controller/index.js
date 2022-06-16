@@ -22,9 +22,11 @@ const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield service_1.default.create({ task, status });
     return res.status(201).json(result);
 });
-const update = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const update = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id, task, status } = req.body;
     const resultUpdate = yield service_1.default.update(id, task, status);
+    if (!resultUpdate)
+        return next({ error: 404, message: 'Task não existe!' });
     return res.status(200).json(resultUpdate);
 });
 exports.default = {

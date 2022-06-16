@@ -13,9 +13,10 @@ const create = async (tarefa: ITaskBody): Promise<ITask> => {
   return task;
 };
 
-const update = async (id: number, task: string, status: string): Promise<ITask> => {
+const update = async (id: number, task: string, status: string): Promise<ITask | undefined> => {
   const updteTask = await taskModel.update(id, task, status);
-
+  if (!updteTask) return undefined;
+  
   return updteTask;
 }
 

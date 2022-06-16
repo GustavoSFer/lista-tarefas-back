@@ -23,6 +23,8 @@ const create = (tarefa) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const update = (id, task, status) => __awaiter(void 0, void 0, void 0, function* () {
     const updteTask = yield models_1.default.update(id, task, status);
+    if (!updteTask)
+        return undefined;
     return updteTask;
 });
 exports.default = {
