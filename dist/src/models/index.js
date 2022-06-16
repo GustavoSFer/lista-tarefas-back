@@ -26,7 +26,16 @@ const create = (tarefa) => __awaiter(void 0, void 0, void 0, function* () {
         status: tarefa.status,
     };
 });
+const update = (id, task, status) => __awaiter(void 0, void 0, void 0, function* () {
+    const updateTask = yield connectionDb_1.default.updateOne({ _id: id, task, status });
+    return {
+        _id: id,
+        task,
+        status,
+    };
+});
 exports.default = {
     read,
     create,
+    update,
 };

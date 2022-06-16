@@ -6,5 +6,6 @@ const route = Router();
 
 route.get('/', taskController.read);
 route.post('/', validacoes.validationTask ,taskController.create);
+route.put('/', validacoes.validationUpdate, taskController.update);
 
 export default route;

@@ -11,9 +11,16 @@ const create = async (tarefa: ITaskBody): Promise<ITask> => {
   const task = await taskModel.create(tarefa);
 
   return task;
+};
+
+const update = async (id: number, task: string, status: string): Promise<ITask> => {
+  const updteTask = await taskModel.update(id, task, status);
+
+  return updteTask;
 }
 
 export default {
   read,
   create,
+  update,
 }

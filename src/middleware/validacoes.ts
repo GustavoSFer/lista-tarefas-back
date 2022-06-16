@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import schema from "../Joi";
 import statusErrorString from "../Joi/statusError";
+import { IError } from '../interfaces/IError';
 
 const validationTask = (req: Request, _res: Response, next: NextFunction) => {
   const { error } = schema.validate(req.body);
@@ -10,9 +11,17 @@ const validationTask = (req: Request, _res: Response, next: NextFunction) => {
 
     return next(middlewareError);
   }
-  next();
+  return next();
+};
+
+const validationUpdate = (req: Request, _res: Response, next: NextFunction) => {
+  const { id, task, status } = req.body;
+  if (!id) return next({ error: 404, message: 'Id não informado!' });
+
+  return next();
 };
 
 export default {
   validationTask,
+  validationUpdate,
 };
