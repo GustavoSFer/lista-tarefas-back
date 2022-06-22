@@ -3,7 +3,6 @@ export const RESULTASK = [
     "_id": "62aa290bc663a6d60439ee52",
     "task": "Realizar tarefa do dia",
     "status": "Pendente",
-    "__v": 0
     },
     {
       "_id": "12aa290bc663a6d60439ee22",
@@ -14,6 +13,6 @@ export const RESULTASK = [
   ]
 
 export const taskBody = {
-  "task": "Testando Gustavo",
+  "task": "Realizar tarefa do dia",
   "status": "Pendente",
 }
