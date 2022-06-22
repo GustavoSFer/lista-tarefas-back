@@ -4,5 +4,5 @@ export interface ITaskBody {
 };
 
 export interface ITask extends ITaskBody {
-  _id: number,
+  _id: string,
 }

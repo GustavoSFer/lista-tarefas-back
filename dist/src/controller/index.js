@@ -15,16 +15,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const service_1 = __importDefault(require("../service"));
 const read = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const task = yield service_1.default.read();
-    console.log('controller');
     return res.status(200).json(task);
 });
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { task, status } = req.body;
     const result = yield service_1.default.create({ task, status });
-    console.log('controller');
     return res.status(201).json(result);
+});
+const update = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id, task, status } = req.body;
+    const resultUpdate = yield service_1.default.update(id, task, status);
+    if (!resultUpdate)
+        return next({ error: 404, message: 'Task não existe!' });
+    return res.status(200).json(resultUpdate);
+});
+const remove = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const delTask = yield service_1.default.remove(id);
+    if (!delTask)
+        return next({ error: 404, message: 'Task não existe!' });
+    return res.status(200).json(delTask);
 });
 exports.default = {
     read,
     create,
+    update,
+    remove,
 };

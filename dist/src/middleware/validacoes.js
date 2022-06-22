@@ -12,8 +12,15 @@ const validationTask = (req, _res, next) => {
         const middlewareError = { error: erroStatus, message: error.details[0].message };
         return next(middlewareError);
     }
-    next();
+    return next();
+};
+const validationUpdate = (req, _res, next) => {
+    const { id } = req.body;
+    if (!id)
+        return next({ error: 404, message: 'Id não informado!' });
+    return next();
 };
 exports.default = {
     validationTask,
+    validationUpdate,
 };

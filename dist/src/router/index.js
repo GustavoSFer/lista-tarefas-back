@@ -9,4 +9,6 @@ const validacoes_1 = __importDefault(require("../middleware/validacoes"));
 const route = (0, express_1.Router)();
 route.get('/', controller_1.default.read);
 route.post('/', validacoes_1.default.validationTask, controller_1.default.create);
+route.put('/', validacoes_1.default.validationUpdate, controller_1.default.update);
+route.delete('/:id', controller_1.default.remove);
 exports.default = route;

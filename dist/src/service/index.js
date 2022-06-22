@@ -21,7 +21,21 @@ const create = (tarefa) => __awaiter(void 0, void 0, void 0, function* () {
     const task = yield models_1.default.create(tarefa);
     return task;
 });
+const update = (id, task, status) => __awaiter(void 0, void 0, void 0, function* () {
+    const updteTask = yield models_1.default.update(id, task, status);
+    if (!updteTask)
+        return undefined;
+    return updteTask;
+});
+const remove = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const delTask = yield models_1.default.remove(id);
+    if (!delTask)
+        return undefined;
+    return delTask;
+});
 exports.default = {
     read,
     create,
+    update,
+    remove,
 };
