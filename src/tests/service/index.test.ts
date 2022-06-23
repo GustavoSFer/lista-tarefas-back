@@ -23,8 +23,6 @@ describe('Serivces', () => {
     });
   });
 
-
-
   describe('#Create', () => {
     describe('Criando Tasks no banco de dados', () => {
       it('Deve retornar a task criada', async () => {
@@ -35,5 +33,28 @@ describe('Serivces', () => {
     });
   });
 
+  describe('#UpDate', () => {
+    beforeEach(() => sinon.restore());
+    describe('Tentando fazer atualização', () => {
+      it('Deve retornar undefined quando não existe a task', async () => {
+        sinon.stub(taskModel, 'update').resolves(undefined);
+        const updateTask = await taskService.update(
+          "62aa290bc663a6d60439ee51",
+          "Testando G123",
+          "Andamento",
+        );
+          expect(updateTask).to.be.equal(undefined);
+      });
+      it('Deve conseguir atualizar com as informações corretas', async () =>{
+        sinon.stub(taskModel, 'update').resolves(updatedTask);
+        const updateTask = await taskService.update(
+          "62aa290bc663a6d60439ee52",
+          "Realizar tarefa do dia",
+          "Andamento",
+        )
+        expect(updateTask).to.be.eqls(updatedTask)
+      });
+    });
+  });
 
 });
