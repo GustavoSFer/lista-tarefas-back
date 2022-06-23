@@ -16,3 +16,9 @@ export const taskBody = {
   "task": "Realizar tarefa do dia",
   "status": "Pendente",
 }
+
+export const updatedTask = {
+  "_id": "62aa290bc663a6d60439ee52",
+  "task": "Realizar tarefa do dia",
+  "status": "Andamento",
+  }
