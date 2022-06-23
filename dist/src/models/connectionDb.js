@@ -8,6 +8,8 @@ mongoose_1.default.connect(process.env.DB_MONGO || 'mongodb://localhost:27017/ta
 const taskSchema = new mongoose_1.default.Schema({
     task: String,
     status: String,
+}, {
+    versionKey: false
 });
 const model = mongoose_1.default.model('Task', taskSchema);
 exports.default = model;

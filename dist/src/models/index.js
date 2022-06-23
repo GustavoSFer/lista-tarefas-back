@@ -26,7 +26,8 @@ const create = (tarefa) => __awaiter(void 0, void 0, void 0, function* () {
     };
 });
 const update = (id, task, status) => __awaiter(void 0, void 0, void 0, function* () {
-    const verifyId = findOne(id);
+    const verifyId = yield findOne(id);
+    console.log('com erro aqui');
     if (!verifyId)
         return undefined;
     yield connectionDb_1.default.updateOne({ _id: id, task, status });
