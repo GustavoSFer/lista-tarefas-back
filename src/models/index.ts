@@ -44,7 +44,7 @@ const remove = async (id: string): Promise<ITask | undefined> => {
   return { 
     _id: id,
     task: 'removido',
-    status: 'já era',
+    status: 'removido',
   };
 }
 

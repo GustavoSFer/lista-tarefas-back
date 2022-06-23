@@ -2,7 +2,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import taskModel from '../../models/index';
 import model from '../../models/connectionDb';
-import { RESULTASK, taskBody, updatedTask } from '../mock';
+import { removerTask, RESULTASK, taskBody, updatedTask } from '../mock';
 import { ITask } from '../../interfaces/index';
 
 describe('Models', () => {
@@ -35,7 +35,7 @@ describe('Models', () => {
   });
 
   describe('#UpDate', () => {
-    beforeEach(() => sinon.restore())
+    beforeEach(() => sinon.restore());
     describe('Tentando fazer atualização', () => {
       it('Deve retornar undefined quando não existe a task', async () => {
         sinon.stub(model, 'findOne').resolves(undefined);
@@ -54,7 +54,28 @@ describe('Models', () => {
           "Andamento",
         )
         expect(updateTask).to.be.eqls(updatedTask)
-      })
+      });
+    });
+  });
+
+  describe('#Remove', () => {
+    beforeEach(() => sinon.restore());
+
+    describe('Removendo tarefa', () => {
+      it('Quando a task não existe deve retornar undefined', async () => {
+        sinon.stub(model, 'findOne').resolves(undefined);
+        const updateTask = await taskModel.remove(
+          "62aa290bc663a6d60439ee51",
+        );
+          expect(updateTask).to.be.equal(undefined);
+      });
+      it('Deve conseguir remover a task com as informações corretas', async () =>{
+        sinon.stub(model, 'deleteOne').resolves();
+        const updateTask = await taskModel.remove(
+          "62aa290bc663a6d60439ee52",
+        )
+        expect(updateTask).to.be.eqls(removerTask)
+      });
     })
   })
 });
