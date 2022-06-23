@@ -45,7 +45,7 @@ describe('Serivces', () => {
         );
           expect(updateTask).to.be.equal(undefined);
       });
-      it('Deve conseguir atualizar com as informações corretas', async () =>{
+      it('Deve conseguir atualizar e retornar a task atualizada', async () =>{
         sinon.stub(taskModel, 'update').resolves(updatedTask);
         const updateTask = await taskService.update(
           "62aa290bc663a6d60439ee52",
@@ -57,4 +57,24 @@ describe('Serivces', () => {
     });
   });
 
+  describe('#Remove', () => {
+    beforeEach(() => sinon.restore());
+
+    describe('Removendo tarefa', () => {
+      it('Quando a task não existe deve retornar undefined', async () => {
+        sinon.stub(taskModel, 'remove').resolves(undefined);
+        const updateTask = await taskService.remove(
+          "62aa290bc663a6d60439ee51",
+        );
+          expect(updateTask).to.be.equal(undefined);
+      });
+      it('Deve conseguir remover a task e retornar que foi removido', async () =>{
+        sinon.stub(taskModel, 'remove').resolves(removerTask);
+        const updateTask = await taskService.remove(
+          "62aa290bc663a6d60439ee52",
+        )
+        expect(updateTask).to.be.eqls(removerTask)
+      });
+    });
+  });
 });

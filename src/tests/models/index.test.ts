@@ -76,6 +76,6 @@ describe('Models', () => {
         )
         expect(updateTask).to.be.eqls(removerTask)
       });
-    })
-  })
+    });
+  });
 });
