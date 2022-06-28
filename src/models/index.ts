@@ -18,34 +18,29 @@ const create = async (tarefa: ITaskBody): Promise<ITask> => {
 };
 
 const update = async (id: string, task: string, status: string): Promise<ITask | undefined> => {
-  const verifyId = findOne(id);
+  const verifyId = await findOne(id);
   if (!verifyId) return undefined;
-  await model.updateOne({ _id: id, task, status });
+  const taskUpdate = await model.findOneAndUpdate({ _id: id },{ task, status });
 
-  return {
-    _id: id,
-    task,
-    status,
-  }
+  return taskUpdate;
 };
 
 const findOne =  async (id: string): Promise<ITask | undefined> => {
   const find = await model.findOne({ _id: id });
-  console.log('>>>>>>>', find)
   if (!find) return undefined;
 
   return find;
 };
 
 const remove = async (id: string): Promise<ITask | undefined> => {
-  // const verifyId = findOne(id);
-  // if (!verifyId) return undefined;
+  const verifyId = await findOne(id);
+  if (!verifyId) return undefined;
   await model.deleteOne({ _id: id });
 
   return { 
     _id: id,
     task: 'removido',
-    status: 'já era',
+    status: 'removido',
   };
 }
 

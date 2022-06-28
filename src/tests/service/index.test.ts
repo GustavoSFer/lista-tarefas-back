@@ -1,24 +1,23 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
 import taskModel from '../../models/index';
-import model from '../../models/connectionDb';
+import taskService from '../../service/index';
 import { removerTask, RESULTASK, taskBody, updatedTask } from '../mock';
 import { ITask } from '../../interfaces/index';
 
-describe('Models', () => {
-  beforeEach(() => sinon.restore());
-  describe('# Find', () => {
+describe('Serivces', () => {
 
+  describe('#Read', () => {
     describe('Buscando informações no banco de dados', () => {
       beforeEach(() => sinon.restore());
       it('Quando não existe dados deve retornar um array vazio', async () => {
-        sinon.stub(model, 'find').resolves([]);
-        const findTask = await taskModel.read();
+        sinon.stub(taskModel, 'read').resolves([]);
+        const findTask = await taskService.read();
         expect(findTask).to.be.empty;
       });
       it('Quando tiver dados, deve retornar um array com as informações', async () => {
-        sinon.stub(model, 'find').resolves(RESULTASK as ITask[]);
-        const findTask = await taskModel.read();
+        sinon.stub(taskModel, 'read').resolves(RESULTASK as ITask[]);
+        const findTask = await taskService.read();
         expect(findTask).to.be.equal(RESULTASK);
       });
     });
@@ -27,8 +26,8 @@ describe('Models', () => {
   describe('#Create', () => {
     describe('Criando Tasks no banco de dados', () => {
       it('Deve retornar a task criada', async () => {
-        sinon.stub(model, 'create').resolves(RESULTASK[0]);
-        const createTask = await taskModel.create(taskBody);
+        sinon.stub(taskModel, 'create').resolves(RESULTASK[0]);
+        const createTask = await taskService.create(taskBody);
         expect(createTask).to.be.eqls(RESULTASK[0]);
       });
     });
@@ -38,17 +37,17 @@ describe('Models', () => {
     beforeEach(() => sinon.restore());
     describe('Tentando fazer atualização', () => {
       it('Deve retornar undefined quando não existe a task', async () => {
-        sinon.stub(model, 'findOne').resolves(undefined);
-        const updateTask = await taskModel.update(
+        sinon.stub(taskModel, 'update').resolves(undefined);
+        const updateTask = await taskService.update(
           "62aa290bc663a6d60439ee51",
           "Testando G123",
           "Andamento",
         );
           expect(updateTask).to.be.equal(undefined);
       });
-      it('Deve conseguir atualizar com as informações corretas', async () =>{
-        sinon.stub(model, 'updateOne').resolves();
-        const updateTask = await taskModel.update(
+      it('Deve conseguir atualizar e retornar a task atualizada', async () =>{
+        sinon.stub(taskModel, 'update').resolves(updatedTask);
+        const updateTask = await taskService.update(
           "62aa290bc663a6d60439ee52",
           "Realizar tarefa do dia",
           "Andamento",
@@ -63,15 +62,15 @@ describe('Models', () => {
 
     describe('Removendo tarefa', () => {
       it('Quando a task não existe deve retornar undefined', async () => {
-        sinon.stub(model, 'findOne').resolves(undefined);
-        const updateTask = await taskModel.remove(
+        sinon.stub(taskModel, 'remove').resolves(undefined);
+        const updateTask = await taskService.remove(
           "62aa290bc663a6d60439ee51",
         );
           expect(updateTask).to.be.equal(undefined);
       });
-      it('Deve conseguir remover a task com as informações corretas', async () =>{
-        sinon.stub(model, 'deleteOne').resolves();
-        const updateTask = await taskModel.remove(
+      it('Deve conseguir remover a task e retornar que foi removido', async () =>{
+        sinon.stub(taskModel, 'remove').resolves(removerTask);
+        const updateTask = await taskService.remove(
           "62aa290bc663a6d60439ee52",
         )
         expect(updateTask).to.be.eqls(removerTask)

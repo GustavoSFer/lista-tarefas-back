@@ -26,31 +26,27 @@ const create = (tarefa) => __awaiter(void 0, void 0, void 0, function* () {
     };
 });
 const update = (id, task, status) => __awaiter(void 0, void 0, void 0, function* () {
-    const verifyId = findOne(id);
+    const verifyId = yield findOne(id);
     if (!verifyId)
         return undefined;
-    yield connectionDb_1.default.updateOne({ _id: id, task, status });
-    return {
-        _id: id,
-        task,
-        status,
-    };
+    const taskUpdate = yield connectionDb_1.default.findOneAndUpdate({ _id: id }, { task, status });
+    return taskUpdate;
 });
 const findOne = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const find = yield connectionDb_1.default.findOne({ _id: id });
-    console.log('>>>>>>>', find);
     if (!find)
         return undefined;
     return find;
 });
 const remove = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    // const verifyId = findOne(id);
-    // if (!verifyId) return undefined;
+    const verifyId = yield findOne(id);
+    if (!verifyId)
+        return undefined;
     yield connectionDb_1.default.deleteOne({ _id: id });
     return {
         _id: id,
         task: 'removido',
-        status: 'já era',
+        status: 'removido',
     };
 });
 exports.default = {
