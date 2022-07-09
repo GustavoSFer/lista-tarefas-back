@@ -42,7 +42,7 @@
 <p>
   Buscando tarefas no banco de dados:
 </p>
-    *endipoint: '/' - "GET"
+    * endipoint: '/' - "GET"
   ```
   [
     {
@@ -65,7 +65,7 @@
 <p>
   Adicionando tarefas no banco de dados:
 </p>
-    *Body:
+    * Body:
   ```
   {
     "task": "Nova tarefa",
@@ -86,5 +86,5 @@
 <p>
   Deletando tarefas no banco de dados: 
   Para deletar o ID da tarefa ter que ser passado como parametro da URL.
-    ```*Exemplo: http://localhost:3001/62aa290bc663a6d60439ee51```
+    ```* Exemplo: http://localhost:3001/62aa290bc663a6d60439ee51```
 </p>
