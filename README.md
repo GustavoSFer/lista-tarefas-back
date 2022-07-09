@@ -43,6 +43,7 @@
   Buscando tarefas no banco de dados:
 </p>
     *endipoint: '/' - "GET"
+  ```
   [
     {
       "_id": "62ba29b7534b9c5db8f5651b",
@@ -60,7 +61,7 @@
       "status": "Pendente"
     }
   ]
-
+  ```
 <p>
   Adicionando tarefas no banco de dados:
 </p>
