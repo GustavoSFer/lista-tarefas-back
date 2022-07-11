@@ -65,6 +65,7 @@
   Adicionando tarefas no banco de dados:
   
   Body:
+  
   ```bash
   {
     "task": "Nova tarefa",
@@ -80,7 +81,8 @@
     "id": "62aa290bc663a6d60439ee51",
     "task": "Testando G123",
     "status": "Andamento"
-  }```
+  }
+  ```
 
 
   Deletando tarefas no banco de dados: 
