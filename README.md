@@ -39,11 +39,10 @@
 
 ## Consumindo a API, Cadastrando tarefas
 
-<p>
   Buscando tarefas no banco de dados:
-</p>
-    * endipoint: '/' - "GET"
-  ```
+
+  endipoint: '/' - "GET"
+  ```bash
   [
     {
       "_id": "62ba29b7534b9c5db8f5651b",
@@ -62,20 +61,19 @@
     }
   ]
   ```
-<p>
+
   Adicionando tarefas no banco de dados:
-</p>
-    * Body:
-  ```
+  
+  Body:
+  ```bash
   {
     "task": "Nova tarefa",
     "status": "Pendente"
   }
   ```
 
-<p>
+
   Atualizando tarefas no banco de dados:
-</p>
   ```
   {
     "id": "62aa290bc663a6d60439ee51",
@@ -83,8 +81,9 @@
     "status": "Andamento"
   }```
 
-<p>
+
   Deletando tarefas no banco de dados: 
   Para deletar o ID da tarefa ter que ser passado como parametro da URL.
-    ```* Exemplo: http://localhost:3001/62aa290bc663a6d60439ee51```
-</p>
+    ```
+    Exemplo: http://localhost:3001/62aa290bc663a6d60439ee51
+    ```
